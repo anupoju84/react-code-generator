@@ -1,16 +1,26 @@
 
 import React from 'react'
+import _ from 'lodash'
 
 const Property = (props) => {
-  const { label, type, options } = props.property
-
+  const {pages, setPages, property, selectedPath, propertyKey} = props
+  const { label, type, options, value } = property
+  console.log("property", property)
+  let propertyPath = `${selectedPath}.properties.${propertyKey}`
+  const onPropertyChange = (event) => {
+    //console.log("event", event, event.target.value)
+    let updatedPages =[...pages]
+    updatedPages = _.set(updatedPages, propertyPath, {..._.get(updatedPages, propertyPath),value: event.target.value})
+    setPages(updatedPages)
+    console.log("UPPROPERTY", propertyPath,{..._.get(updatedPages, propertyPath),value: event.target.value})
+  }
   let propertyControl = ''
   switch (type) {
     case 'text':
-      propertyControl = <input type="text" />
+      propertyControl = <input type="text" className="standard-input" onChange={onPropertyChange} value={value}/>
       break
     case 'dropdown':
-      propertyControl = <select>
+      propertyControl = <select className="standard-input">
         {options.map((option, optionKey) => <option value={option.value}>{option.label}</option>)}
       </select>
       break

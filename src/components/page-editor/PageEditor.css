@@ -2,7 +2,7 @@
   height: 100%;
 }
 .page-editor .content{
-  height: calc(100% - 70px);
+  height: calc(100% - 114px);
   background-color: #fff;
   border: 2px solid #ddd;
   margin: 8px 16px;
@@ -15,10 +15,21 @@
   padding: 4px 8px;
   cursor: pointer;
   outline: none;
-  width: 100%;
+  width: calc(100% - 16px);
   font-weight: normal;
+  margin-bottom: 8px;
 }
-.btn-dropped-control.selected{
+.page-editor .selected{
   background-color: #bdbdbd;
   color: #fff;
+}
+.button-bar{
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 16px;
+  padding-bottom: 8px;
+}
+
+.button-bar button:not(:last-child){
+  margin-right: 16px;
 }
